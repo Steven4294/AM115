@@ -1,0 +1,16 @@
+%Civilisation1
+function ode45_basic
+M1=0;
+R1=10;
+V0=10;
+K=200;
+A=40;
+B=100;
+alpha=5;
+[t,V1]=ode45(@(t,V1) f(t,V1,K,alpha,A,B),[0 100],V0);
+hold on;
+plot(t,V1,'-o')
+xlabel('t');ylabel('Village Civilisation1')
+hold on;
+function ydot=f(t,V1,K,alpha,A,B)
+ydot=alpha*V1*(1-V1/K)-B*V1^2/(A^2+V1^2);
