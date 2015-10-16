@@ -63,11 +63,11 @@ In our second case, we have $C_1 = M_1 + V_1$, with $M_1(0)$ representing the st
 
 We model this case as a set of differential equations: 
 
-$$\frac{dM_1}{dt}=aV_1(1-\frac{V_1}{K-V_1})-[M_1D_1(\frac{M_2^2}{B_1+M_2^2})(\frac{M_1}{A_1+M_1^3})]$$
-$$\frac{dV_1}{dt}=(\alpha - a)V_1(1-\frac{V_1}{K-M_1})-[V_1D_2(\frac{M_2^2}{B_2+M_2^2})(\frac{M_1}{A_2 +M_1^2})]$$
-$$\frac{dM_2}{dt}=-M_2 D_3(\frac{M_1^2}{B_3+M_1^2})(\frac{M_2}{A_3 +M_2^3}) $$
+$$\frac{dM_1}{dt}=a \alpha V_1(1-\frac{V_1}{K-V_1})-[M_1D_1(\frac{M_2^2}{B+M_2^2})(\frac{M_1}{A+M_1^3})]$$
+$$\frac{dV_1}{dt}=(1 - a) \alpha V_1(1-\frac{V_1}{K-M_1})-[V_1cD_1(\frac{M_2^2}{B+M_2^2})(\frac{M_1}{A +M_1^2})]$$
+$$\frac{dM_2}{dt}=-M_2 D_2(\frac{M_1^2}{B+M_1^2})(\frac{M_2}{A +M_2^3}) $$
 
-Here, we have that $a$ and $\alpha - a$ to represent the idea that the total reproduction rate $\alpha$ is split into villager births $a$ and military births $\alpha - a$. We maintain logistic growth dependent on $V_1$ but add the $K - X$ term in the denominators to model that carrying capacity for $C_1$ is $K$. We derived the predation terms by holding $\cdots$ TODO 
+Here, we have that $a$ and $\alpha - a$ to represent the idea that the total reproduction rate $\alpha$ is split into villager births $a$ and military births $\alpha - a$. We maintain logistic growth dependent on $V_1$ but add the $K - X$ term in the denominators to model that carrying capacity for $C_1$ is $K$. We derived the predation terms by holding $\cdots$ TODO NOTE $c = 6$ because it's easier to kill villagers, specifically in the game miltary units have 6x life points. 6 PARAMS total
 
 \subsection{Sensitivity to Parameters}
 
@@ -85,12 +85,12 @@ In our final case, we have $C_1 = M_1 + V_1$, with $M_1(0)$ and $V_1(0)$ represe
 
 We model this case as a set of differential equations: 
 
-$$\frac{dM_1}{dt}=a_1V_1(1-\frac{V_1}{K-V_1})-[M_1D_1(\frac{M_2^2}{B_1+M_2^2})(\frac{M_1}{A_1+M_1^3})]$$
-$$\frac{dV_1}{dt}=(\alpha - a_1)V_1(1-\frac{V_1}{K-M_1})-[V_1D_2(\frac{M_2^2}{B_2+M_2^2})(\frac{M_1}{A_2 +M_1^2})]$$
-$$\frac{dM_2}{dt}=a_2V_2(1-\frac{V_2}{K-V_2})-[M_2 D_3(\frac{M_1^2}{B_3+M_1^2})(\frac{M_2}{A_3 +M_2^3})] $$
-$$\frac{dV_2}{dt}=(\beta - a_2)V_2(1-\frac{V_2}{K-M_2})-[V_2 D_4(\frac{M_1^2}{B_4+M_1^2})(\frac{M_2}{A_4 +M_2^2})] $$
+$$\frac{dM_1}{dt}=a_1 \alpha V_1(1-\frac{V_1}{K-V_1})-[M_1D_1(\frac{M_2^2}{B+M_2^2})(\frac{M_1}{A+M_1^3})]$$
+$$\frac{dV_1}{dt}=(1 - a_1) \alpha V_1(1-\frac{V_1}{K-M_1})-[V_1c D_1(\frac{M_2^2}{B+M_2^2})(\frac{M_1}{A +M_1^2})]$$
+$$\frac{dM_2}{dt}=a_2 \beta V_2(1-\frac{V_2}{K-V_2})-[M_2 D_2(\frac{M_1^2}{B+M_1^2})(\frac{M_2}{A +M_2^3})] $$
+$$\frac{dV_2}{dt}=(1 - a_2) \beta V_2(1-\frac{V_2}{K-M_2})-[V_2 c D_2(\frac{M_1^2}{B+M_1^2})(\frac{M_2}{A +M_2^2})] $$
 
-Explanation $\cdots$ TODO 
+Explanation $\cdots$ TODO $c = 6$ because it's easier to kill villagers, specifically in the game miltary units have 6x life points. $\alpha$ and $\beta$ are basically spawn rate params + how quickly you gather resources. It's different for you vs the AI. $a_1$ and $a_2$ is your's vs the AI's strategy of allocating villagers/ military units. 6 PARAMS total.
 
 \subsection{Sensitivity to Parameters}
 \includegraphics[width=200pt]{examplesim2}
