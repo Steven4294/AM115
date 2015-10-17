@@ -1,4 +1,5 @@
 \documentclass[12pt]{article}
+\usepackage{hyperref}
 \usepackage{latexsym}
 \usepackage{amssymb,amsmath}
 \usepackage[pdftex]{graphicx}
@@ -25,7 +26,7 @@ Theresa Bischoff, Steven Petterutti, Tina Qian, Varun Sriram
 \end{center}
 
 \begin{abstract}
-	We modeled the game "Age of Empires," in which rival civilizations attempt to achieve world domination by destroying one another. Our goal is to consider different game strategies and to optimize conditions against enemy AI. By modeling the interaction between two civilizations with sets of ODEs for various strategies, and by performing stability/parameter analysis, we determined the necessary conditions for staying alive and ultimately, winning the game. We found that $\cdots$ TODO
+	We modeled the game "Age of Empires," in which rival civilizations attempt to achieve world domination by destroying one another. Our goal is to consider different game strategies and to optimize conditions against enemy AI. By modeling the interaction between two civilizations with sets of ODEs for various strategies, and by performing stability/parameter analysis, we determined the necessary conditions for staying alive and ultimately, winning the game. We found that certain settings of aprameters can in fact doom us to lose, and solved for the settings of parameters and initial conditions that can help us win.
 	
 \end{abstract}
 
@@ -36,8 +37,6 @@ In our analysis, we let civilization $C_1$ represent our civilization and civili
 When initializing a game, setting certain parameters to specific values can maximize our chances of defeating the AI civilization - these include initial populations of the AI, AI intelligence level and military skills, new unit spawn speed, and map size. Furthermore, parameters such as how fast we click to destroy military units (that is parameter dictating our game performance) can also maximize or hurt our chances defeating the AI civilization. In this project, by exploring models of game strategy, considering phase diagrams, and exploring initial conditions/ parameter sensitivity, we gain insight into what we should set these parameters to, and thus what we can do to maximize our chances of winning. \par
 
 \section{The Model}
-\paragraph{}
-We consider 3 separate scenarios of increasing complexity. 
 
 \subsection{Scenario 1}
 
@@ -62,43 +61,173 @@ $$\dot V_1=(1 - a) \alpha V_1(1-\frac{V_1}{K-M_1})-[V_1cD_1(\frac{M_2^2}{A+M_2^2
 $$\dot M_2=-M_2 D_2(\frac{M_1^2}{A+M_1^2})(\frac{M_2}{A +M_2^3}) $$
 $$\dot V_2 = 0 $$
 
-Here, we have that $a$ and $\alpha - a$ to represent the idea that the total reproduction rate $\alpha$ is split into villager births $a$ and military births $\alpha - a$. We maintain logistic growth dependent on $V_1$ but add the $K - X$ term in the denominators to model that carrying capacity for $C_1$ is $K$. We derived the predation terms by holding $\cdots$ TODO NOTE $c = 6$ because it's easier to kill villagers, specifically in the game miltary units have 6x life points. 6 PARAMS total
+Let us explain our reasoning for this set of ODEs. For civilization 1, the first terms in $\dot M_1$ and $\dot V_1$ represent logistic growth. Here the reproduction rate of military and of villagers are $a \alpha$ and $(1 - a) \alpha$ respectively where the $a$ now represents the fraction that we devote to military. The carrying capacities of military and villagers are $K-V_1$ and $K-M_1$ respectively. For civilization 1, the second term represents the predation term, which depends on both $M_1$ and $M_2$. It was derived by holding the other variable constant, considering how predation is affected by the variable in question, and then choosing the best functional form to represent this. The $M_1 (\frac{M_2^2}{A+M_2^2})$ and $V_1 (\frac{M_2^2}{A+M_2^2})$ terms represent how $M_2$ affects predation on $M_1$ and $V_1$ respectively, where the multiplication by $M_1$ and $V_1$ represent maximum kill limits. The $A$ again is controlled by map size, and represents the point at which predation becomes easier because you have enough $M_2$ to find enemy units. The $M_1 D_1 (\frac{M_1}{A+M_1^3})$ and the $D_1 (\frac{M_1}{A +M_1^2})$ represent the relationship between $M_1$ and predation. When $M_1$ is small, predation will rise, but when $M_1$ gets large enough (controlled by $A$), predation will fall. The $D_1$ is a parameter that controlls how effectively $C_2$ can kill $C_1$ military units, where larger values indicate they are more effective. $c = 6$ because military units have 6x the life points of villager units, and thus villagers are 6x easier to kill. For civlization 2, there is no growth because $V_2 = 0$ for all $t$. There is only a predation term on $M_2$ that is symmetricly formed; the parameter $D_2$ controlls how effectively we, $C_1$, can vanquish $M_2$. This is determined largely by our clicking speed in the game. \par
+The number of parameters we can control in this system is 5 - we can control $A$ with map size, $D_1$ is controlled by AI speed and intelligence (which can be set at game initialization), $D_2$ is controlled by our clicking speed in the game, $a$ is the strategy of villager/military allocation we employ in the game, and $\alpha$ is reproduction rate overall which is controlled mostly by spawn rates we set at game initialization.
 
 \subsection{Scenario 3}
 
- In our final scenario, civilization 2 is permitted to start with some villagers and devotes a portion of new citizens to become villagers. Civilization does not change from the previous case, having both military and villagers. In our final case, we have $C_1 = M_1 + V_1$, with $M_1(0)$ and $V_1(0)$ representing the starting military and villager populations respectively for the first civilzation. However, $C_2 = M_2 + V_2$ as well now, with $M_2(0)$ and $V_2(0)$ representing the starting military and villager populations respectively for the second civilization. \par
-
-We model this case as a set of differential equations: 
+ In our final scenario, $C_1$ produces both villagers and military units as before. However, we initialize $C_2$ to start with some villagers as well, and they produce both villagers and military units. Now, we write out equations for $C_2$ that are symmetric to the equations for $C_1$, following the same logic for our model as scenario 2: 
 
 $$\dot M_1 =a_1 \alpha V_1(1-\frac{V_1}{K-V_1})-[M_1D_1(\frac{M_2^2}{A+M_2^2})(\frac{M_1}{A+M_1^3})]$$
 $$\dot V_1=(1 - a_1) \alpha V_1(1-\frac{V_1}{K-M_1})-[V_1c D_1(\frac{M_2^2}{A+M_2^2})(\frac{M_1}{A +M_1^2})]$$
 $$\dot M_2=a_2 \beta V_2(1-\frac{V_2}{K-V_2})-[M_2 D_2(\frac{M_1^2}{A+M_1^2})(\frac{M_2}{A +M_2^3})] $$
 $$\dot V_2=(1 - a_2) \beta V_2(1-\frac{V_2}{K-M_2})-[V_2 c D_2(\frac{M_1^2}{A+M_1^2})(\frac{M_2}{A +M_2^2})] $$
 
-Explanation $\cdots$ TODO $c = 6$ because it's easier to kill villagers, specifically in the game miltary units have 6x life points. $\alpha$ and $\beta$ are basically spawn rate params + how quickly you gather resources. It's different for you vs the AI. $a_1$ and $a_2$ is your's vs the AI's strategy of allocating villagers/ military units. 6 PARAMS total.
+Here we have 6 parameters. The additional paramter is $\beta$ which is determined only by spawn rate of units. If we are as fast as the AI at clicking villagers to gather resources, then $\alpha = \beta$. Note that $a_2$ isn't really a parameter, since the military/villager allocation is set in the game code. Proportional allocation as we have here is a bit of a simplification of the allocation schedule, but we will let $a_2 = 0.5$.
 
 \section{Analysis of the Model}
-\paragraph{}
 
+\subsection{Scenario 1}
 
-\includegraphics[width=200pt]{examplesim1}
-\includegraphics[width=200pt]{examplecontour1}
+Because we only have one nontrivial ODE, we can perform algebraic analysis more easily. Let us consider the fixed points of the system. $V_1 = 0$ is trivially a fixed point, because if $V_1 = 0$, the system is stuck at $M_2 = M_2(0)$ since $C_1$ cannot reproduce. If $V_1$ starts off with a non-zero value, then we have a more interesting dependence on paramenters $A$ and $\alpha$ as well as initial condition $M_2(0)$. By setting $\dot V_1$ to 0, and dividing out the $V_1$, since we are only considering fixed points where $V_1 > 0$ now, we get $V_1 = k(1 - \frac{1}{\alpha} \frac{M_2^2}{A^2 + M_2^2})$ as the fixed point. Note though that because $V_1 > 0$, this requires that $\frac{1}{\alpha} \frac{M_2^2}{A^2 + M_2^2} < 1$. Rearranging, the requirement for a non-zero $V_1$ fixed point existence is $M_2^2 < \frac{\alpha}{1 - \alpha} A^2$.\par
+In the following phase portrait, we set $\alpha = 0.5$ indicating a reasonable spawn rate, and $A=10$ indicating a rather small map. According to our above analysis, we will need $M_2^2 < 100$ meaning that when $M_2(0) < 10$, we will have a stable fixed point at nonzero $V_1$ implying that we win the game. Otherwise, we are doomed to lose the game. This is also clearly illustrated in our phase portrait where the red dots indicate fixed points. The red dots are at nonzero $C_1 = V_1$ when $M_2 < 10$. The arrows also illustrate that these are stable fixed points.  Here is a picture of the phase diagram that produced these results (from Code Snippet 1):
+\begin{center}
+\includegraphics[width=250pt]{phaseplot_basic}
+\end{center}
 
-\includegraphics[width=200pt]{phase2}
+Below is a contour plot (from Code Snippet 2) illustrating how the fixed point $V_1$ varies with the parameters $A$ and $\alpha$. We let $M_2(0) = 200$, and $V_1(0) = 50$. Specifically, since $A < 200$, $\alpha > 0.5$ for us to win. As you can see, this is justified by the contour plot. Also, for fixed A, higher alpha means our population stabilizes at a higher value, and likewise, for fixed alpha, higher A means a higher stable $V_1$:
+\begin{center}
+\includegraphics[width=200pt]{contourplot_basic}
+\end{center}
+
+Note that under specific settings of parameters as discussed above, it is possible for us to lose - left figure - or win - right figure (from Code Snippet 3). See the code for the parameter values used, and note that it follows the same relationship discussed.
+\begin{center}
+\includegraphics[width=200pt]{graph_basic}
+\end{center}
+
+\subsection{Scenario 2}
+Here, because we have a system of ODEs, algebraic analysis is more difficult, but we can still perform some algebraic reasoning about the fixed points of the system.
+\subsection{Scenario 3}
+
 
 \section{Discussion}
-\paragraph{}
+Before delving into contextualizing the results and further commenting on the behavior of models, let us briefly consider some limitations of our model. In the game, our allocations schedule might be more complicated than simply having the same proportion of villager and military births for all time, so this was a simplifying assumption we made. Furthermore, military units themselves can be split into archers, cavaliers, knights, etc. in the game, each of which have different properties and weaknesses/affinities towards one another in battle. Obviously, here too our model has made a simplifying assumption of uniformity in the types of miltary units. However, we can account for this somewhat in our model: if we have poor knowledge of the types of military units, then we can model this as a low $D_2$ parameter in our ODE because we will be less effective at killing the enemy AI.
+
+\subsection{Scenario 1}
+We found that in order to win, we needed $M_2^2 < \frac{\alpha}{1 - \alpha} A^2$, and we need to start with some villagers. This will allow us to reach a stable fixed point in which $V_1 > 0$ which will induce the enemy AI to surrender with enough time. This means if $M_2(0)$ is high like 200, we would need $\alpha > 0.5$ to win. If we set $\alpha = 1$, which means instantaneous spawn rates/ resource gathering, then regardless of map size, we should be able to sustain a non-zero population in the long run and thus win, which makes sense. If we choose a small map size (corresponds to low $A$ because it would be easier to find and kill villagers with even a small army), then we can also start the AI with a small military to win, or simply set a very high reproduction rate, i.e initialize a high unit spawn rate and gather resources quickly. \par
+
+Thus, when initializing the game, we need to pick the right interplay of parameters between the military starting size of the AI, the map size, and the unit spawn rate, satisfying the above equation. Note that this will give us the best chance of winning, but not guarantee it, because if we are very slow at clicking villagers to resources in the actual gameplay, this will lower $\alpha$ and we may lose.
+
+\subsection{Scenario 2}
+\subsection{Scenario 3}
 
 \section{Conclusion} 
-\paragraph{}
+TODO: brief summary of motivation and discussion
 
 \section{Attribution of Efforts} 
 \paragraph{}
 
 \section{References} 
-\paragraph{}
+\begin{enumerate}
+\item \url{http://ageofempires.wikia.com/wiki/Age_of_Empires_III}
+\item Class Notes from Zhiming Kuang
+\end{enumerate}
 
 \section{Code Appendix} 
-\paragraph{}
+\subsection{Snippet 1}
+\begin{verbatim}
+% Phase place plots of base case
+
+clf; clear all
+
+% Parameters, which can be varied to produce introducing results. 
+alpha=0.5;
+K=200; 
+A=10;
+
+% C_2=M_2= population of Civilization 2. Similarly, % C_1=V_1 = population
+% of Civilization 1
+% For this basic case, the population of Civ 2 is constant, since everyone
+% is military and no one in Civ 1 is military, so Civ 2 cannot die
+% Carrying capacity is 200, so we will make the phase portrait from 0 to
+% 200
+i=0;
+for M_2=1:1:20
+  i=i+1;
+  j=0;
+  for V_1=0:5:200
+    j=j+1;
+    VV1(i,j)=V_1;
+    MM2(i,j)=M_2;
+    dV_1(i,j)=alpha.*V_1.*(1-(V_1./K))-V_1*((M_2.^2)./(A^2+M_2.^2));
+    dM_2(i,j)=0;
+  end
+end
+
+% plot arrows in phase plane:
+quiver(VV1,MM2,dV_1,dM_2)
+h(1)=title('Civ 1 and Civ 2 populations');
+h(2)=xlabel('Civilization 1');
+h(3)=ylabel('Civilization 2');
+h(4)=gca;
+set(h,'FontSize',18)
+axis([0 200 0 20])
+hold on;
+
+
+% plot fixed points - where the derivative is essentially 0 for both V_1
+% and M_1
+for i = 1:size(dM_2, 1)
+    for j = 1:size(dV_1, 2)
+        threshold = 0.3;
+        if i == 9
+            threshold = 0.1;
+        elseif i == 10
+            threshold = 0.01;
+        elseif i == 3
+            threshold = 1;
+        elseif i == 1
+            threshold = 0.6;
+        end
+        
+        if abs(dV_1(i, j)) < threshold && abs(dM_2(i, j)) < threshold
+            plot(VV1(i,j), MM2(i,j), 'r.', 'MarkerSize',20);
+        end
+    end
+end
+\end{verbatim}
+
+\subsection{Snippet 2}
+\begin{verbatim}
+A_array = linspace(0, 200, 40);
+alpha_array = linspace(0, 1, 40);
+
+% Find fixed point vlaue for different A and alpha
+for j=1:length(A_array)
+    A = A_array(j);
+    for k = 1:length(alpha_array)
+        alpha = alpha_array(k);
+        
+        fixedpoint_V1(j, k) = basecase_v1_value(A, alpha, 200);
+    end 
+end
+
+% in order to plot parameter dependencies
+[X Y] = meshgrid(alpha_array, A_array);
+
+subplot(2,1,1)
+surf(X, Y, fixedpoint_V1)
+xlabel('alpha')
+ylabel('A')
+zlabel('V_1')
+
+subplot(2,1,2)
+contour(X, Y, fixedpoint_V1, 'ShowText','on')
+title('contour for V_1')
+xlabel('alpha')
+ylabel('A')
+
+function V1 = basecase_v1_value(A, alpha, M20)
+    % The fixed point calculation as decribed in the report
+    stable_val = 200 * (1 - (1 / alpha) * (M20^2 / (A^2 + M20^2)));
+    if stable_val < 0.5
+        V1 = 0;
+    else
+        V1 = stable_val;
+    end
+end
+\end{verbatim}
+
+\subsection{Snippet 3}
 
 \end{document}
