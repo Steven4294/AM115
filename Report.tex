@@ -96,7 +96,14 @@ Note that under specific settings of parameters as discussed above, it is possib
 \end{center}
 
 \subsection{Scenario 2}
-Here, because we have a system of ODEs, algebraic analysis is more difficult, but we can still perform some algebraic reasoning about the fixed points of the system. The equation for $\dot M_2$ implies that in the fixed point equilibrium $M_2 = 0$ or $M_1 = 0$ or both are 0. If only $M_1$
+Here, because we have a system of ODEs, algebraic analysis is more difficult, but we can still perform some algebraic reasoning about the fixed points of the system. The equation for $\dot M_2$ implies that in the fixed point equilibrium $M_2 = 0$ or $M_1 = 0$ (or both are 0). If $M_1=0$, then $V_1=0$ or $V_1=(1-a)k$; if $V_1 = 0$, then $M_2$ can be anything (including 0) and if $V_1 = (1-a)k$, then $M_2$ must be 0. If $M_2 = 0$, then $V_1=0$ or $V_1=(1-a)k$; if $V_1 = 0$, then $M_1$ can be anything (including 0) and if $V_1 = (1-a)k$, then $M_1 = ak$. Because the only way to get $M_i = 0$ and $V_1 = (1-a)k$ is by setting $V_1(0) = (1-a)k$, we won't talk more about that fixed point. There are 3 remaining stable equilibrium scenarios from above:
+\begin{itemize}
+\item $V_1 = 0$, $M_1 = 0$, and $M_2 \geq 0$.
+\item $V_1 =0$, $M_1 \geq 0$, and $M_2 = 0$.
+\item $V_1 = (1-a)k$, $M_1 = ak$, and $M_2 = 0$.
+\end{itemize}
+
+By changing the parameters $\alpha$, $A$, $a$, $D_1$, and $D_2$, we might vary the fixed point we reach. We can also do so with different initial conditions.
 \subsection{Scenario 3}
 
 
