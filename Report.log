@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  18 OCT 2015 01:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  18 OCT 2015 03:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -325,175 +325,171 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
 
-<phaseplot_basic.png, id=115, 721.69624pt x 619.31375pt>
+<phaseplot_basic.png, id=123, 721.69624pt x 619.31375pt>
 File: phaseplot_basic.png Graphic file (type png)
 
 <use phaseplot_basic.png>
 Package pdftex.def Info: phaseplot_basic.png used on input line 86.
 (pdftex.def)             Requested size: 250.0pt x 214.53287pt.
  [4]
-<contourplot_basic.png, id=122, 559.08875pt x 700.6175pt>
+<contourplot_basic.png, id=130, 559.08875pt x 700.6175pt>
 File: contourplot_basic.png Graphic file (type png)
 
 <use contourplot_basic.png>
 Package pdftex.def Info: contourplot_basic.png used on input line 91.
 (pdftex.def)             Requested size: 200.0pt x 250.62921pt.
- [5 <./phaseplot_basic.png> <./contourplot_basic.png>] <graph_basic.png, id=129
+ [5 <./phaseplot_basic.png> <./contourplot_basic.png>] <graph_basic.png, id=137
 , 542.025pt x 410.53375pt>
 File: graph_basic.png Graphic file (type png)
  <use graph_basic.png>
 Package pdftex.def Info: graph_basic.png used on input line 96.
 (pdftex.def)             Requested size: 200.0pt x 151.48166pt.
 
-<graph_ext1.png, id=130, 540.0175pt x 420.57124pt>
+<graph_ext1.png, id=138, 540.0175pt x 420.57124pt>
 File: graph_ext1.png Graphic file (type png)
  <use graph_ext1.png>
 Package pdftex.def Info: graph_ext1.png used on input line 109.
 (pdftex.def)             Requested size: 200.0pt x 155.75652pt.
 
 [6 <./graph_basic.png>]
-<contour_ext1_part1.png, id=139, 1225.57875pt x 663.47874pt>
+<contour_ext1_part1.png, id=147, 1225.57875pt x 663.47874pt>
 File: contour_ext1_part1.png Graphic file (type png)
 
 <use contour_ext1_part1.png>
 Package pdftex.def Info: contour_ext1_part1.png used on input line 115.
 (pdftex.def)             Requested size: 300.0pt x 162.4069pt.
+
+<contour_ext1_part2.png, id=148, 1333.98375pt x 721.69624pt>
+File: contour_ext1_part2.png Graphic file (type png)
+
+<use contour_ext1_part2.png>
+Package pdftex.def Info: contour_ext1_part2.png used on input line 121.
+(pdftex.def)             Requested size: 300.0pt x 162.29756pt.
  [7 <./graph_ext1.png> <./contour_ext1_part1.png>]
-[8]
-Overfull \hbox (45.01146pt too wide) in paragraph at lines 205--205
+<contour_ext1_part3.png, id=156, 1169.36874pt x 650.43pt>
+File: contour_ext1_part3.png Graphic file (type png)
+
+<use contour_ext1_part3.png>
+Package pdftex.def Info: contour_ext1_part3.png used on input line 127.
+(pdftex.def)             Requested size: 300.0pt x 166.8648pt.
+ [8 <./contour_ext1_part2.png> <./contour_ext1_part3.png>] [9] [10]
+Overfull \hbox (45.01146pt too wide) in paragraph at lines 222--222
 []\OT1/cmtt/m/n/12 % C_2=M_2= population of Civilization 2. Similarly, % C_1=V_
 1 = population[] 
  []
 
 
-Overfull \hbox (45.01146pt too wide) in paragraph at lines 205--205
+Overfull \hbox (45.01146pt too wide) in paragraph at lines 222--222
 []\OT1/cmtt/m/n/12 % For this basic case, the population of Civ 2 is constant, 
 since everyone[] 
  []
 
 
-Overfull \hbox (32.66145pt too wide) in paragraph at lines 205--205
+Overfull \hbox (32.66145pt too wide) in paragraph at lines 222--222
 []\OT1/cmtt/m/n/12 % Carrying capacity is 200, so we will make the phase portra
 it from 0 to[] 
  []
 
 
-Overfull \hbox (7.96144pt too wide) in paragraph at lines 205--205
+Overfull \hbox (7.96144pt too wide) in paragraph at lines 222--222
 []    \OT1/cmtt/m/n/12 dV_1(i,j)=alpha.*V_1.*(1-(V_1./K))-V_1*((M_2.^2)./(A^2+M
 _2.^2));[] 
  []
 
 
-Overfull \hbox (32.66145pt too wide) in paragraph at lines 205--205
+Overfull \hbox (32.66145pt too wide) in paragraph at lines 222--222
 []\OT1/cmtt/m/n/12 % plot fixed points - where the derivative is essentially 0 
 for both V_1[] 
  []
 
-[9]
-Overfull \hbox (14.13644pt too wide) in paragraph at lines 205--205
+[11]
+Overfull \hbox (14.13644pt too wide) in paragraph at lines 222--222
 []        \OT1/cmtt/m/n/12 if abs(dV_1(i, j)) < threshold && abs(dM_2(i, j)) < 
 threshold[] 
  []
 
-[10]
-Overfull \hbox (1.78644pt too wide) in paragraph at lines 246--246
+[12]
+Overfull \hbox (1.78644pt too wide) in paragraph at lines 263--263
 []    \OT1/cmtt/m/n/12 stable_val = 200 * (1 - (1 / alpha) * (M20^2 / (A^2 + M2
 0^2)));[] 
  []
 
-[11]
-Overfull \hbox (63.53647pt too wide) in paragraph at lines 327--327
+[13]
+Overfull \hbox (63.53647pt too wide) in paragraph at lines 344--344
 []\OT1/cmtt/m/n/12 [ t,P ] = solveExtension1(100,300, 8.17, 200, 1.0/6.0, 0.5, 
 20, 100, 30, 40);[] 
  []
 
 
-Overfull \hbox (26.48645pt too wide) in paragraph at lines 327--327
+Overfull \hbox (26.48645pt too wide) in paragraph at lines 344--344
 []\OT1/cmtt/m/n/12 [ a,b ] = solveExtension1(100,200,190, 200, 0.2, 0.5, 25, 10
 0, 20, 50);[] 
  []
 
 
-Overfull \hbox (51.18646pt too wide) in paragraph at lines 327--327
+Overfull \hbox (51.18646pt too wide) in paragraph at lines 344--344
 []\OT1/cmtt/m/n/12 [ t,P ] = solveExtension1(200,100,190, 200, 1.0/7.0, 0.5, 25
 , 150, 50, 50);[] 
  []
 
 
-Overfull \hbox (63.53647pt too wide) in paragraph at lines 327--327
+Overfull \hbox (63.53647pt too wide) in paragraph at lines 344--344
 []\OT1/cmtt/m/n/12 function [ t,P ] = solveExtension1(D1,D2,A, k, a, alpha, M10
 , V10, M20, tmax)[] 
  []
 
-[12]
-Overfull \hbox (211.73654pt too wide) in paragraph at lines 327--327
+[14]
+Overfull \hbox (211.73654pt too wide) in paragraph at lines 344--344
 []        \OT1/cmtt/m/n/12 dP(1)=a*alpha*P(2)*(1 - P(2)/((1-a)*k)) - D1*P(1)*(P
 (3)^2 / (A + P(3)^2))*(1 / (A + P(1)^2));[] 
  []
 
 
-Overfull \hbox (248.78656pt too wide) in paragraph at lines 327--327
+Overfull \hbox (248.78656pt too wide) in paragraph at lines 344--344
 []        \OT1/cmtt/m/n/12 dP(2)=(1 - a)*alpha*P(2)*(1 - P(2)/((1-a)*k)) - 6*D1
 *P(2)*(P(3)^2 / (A + P(3)^2))*(1 / (A + P(1)));[] 
  []
 
 
-Overfull \hbox (1.78644pt too wide) in paragraph at lines 327--327
+Overfull \hbox (1.78644pt too wide) in paragraph at lines 344--344
 []        \OT1/cmtt/m/n/12 dP(3)= -D2*P(3)*(P(1)^2 / (A + P(1)^2))*(1 / (A + P(
 3)^2));[] 
  []
 
 
-Overfull \hbox (38.83646pt too wide) in paragraph at lines 379--379
-[]\OT1/cmtt/m/n/12 % We assume here that in our initial values, the proportion 
-of M_1 out of[] 
+Overfull \hbox (75.88647pt too wide) in paragraph at lines 408--408
+[]        \OT1/cmtt/m/n/12 [ t,P ] = solveExtension1(100,200,A, 200, 0.2, alpha
+, 25, 100, 20, 50);[] 
  []
 
-
-Overfull \hbox (32.66145pt too wide) in paragraph at lines 379--379
-[]\OT1/cmtt/m/n/12 % total C_1 is (a/alpha), the same proportion of new births 
-that will be[] 
+[15] [16]
+Overfull \hbox (63.53647pt too wide) in paragraph at lines 472--472
+[]        \OT1/cmtt/m/n/12 [ t,P ] = solveExtension1(D1,D2,150, 200, 0.2, 0.5, 
+25, 100, 20, 50);[] 
  []
 
-
-Overfull \hbox (51.18646pt too wide) in paragraph at lines 379--379
-[]\OT1/cmtt/m/n/12 % dedicated to becoming soldiers. Similarly, the proportion 
-of V_1 would be[] 
+[17]
+Overfull \hbox (100.58649pt too wide) in paragraph at lines 540--540
+[]        \OT1/cmtt/m/n/12 [ t,P ] = solveExtension1(100,200,150, 200, 0.2, 0.5
+, M10, 4*M10, M20, 40);[] 
  []
 
-
-Overfull \hbox (51.18646pt too wide) in paragraph at lines 379--379
-[]\OT1/cmtt/m/n/12 % 1-(a/alpha). This is to avoid making a 3-D or 4-D phase di
-agram with V_1,[] 
- []
-
-[13]
-Overfull \hbox (180.86153pt too wide) in paragraph at lines 379--379
-[]    \OT1/cmtt/m/n/12 dV_1(i,j)=((1-a)*alpha).*V_1.*(1-(V_1./((1-a)*K)))-V_1*c
-*D1*(M_2.^2./(A+M_2^2))*(1/(A+M_1));[] 
- []
-
-
-Overfull \hbox (180.86153pt too wide) in paragraph at lines 379--379
-[]    \OT1/cmtt/m/n/12 dM_1(i,j)=(a*alpha).*V_1.*(1-(V_1./((1-a)*K)))-M_1.*D1.*
-(M_2^2./(A+M_2.^2))*(1./(A+M_1.^2));[] 
- []
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 382.
-[14]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 382.
+[18]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 543.
+ [19]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 543.
  (./Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 382.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 382.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 543.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 543.
 Package rerunfilecheck Info: File `Report.out' has not changed.
-(rerunfilecheck)             Checksum: 9D54FD4231E17BF6E9CD079932309DFD;1221.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 382.
+(rerunfilecheck)             Checksum: 9156C82FE2DC5922F3F6D54502C3B0FF;1339.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 543.
  ) 
 Here is how much of TeX's memory you used:
- 6044 strings out of 493089
- 87106 string characters out of 6134842
+ 6062 strings out of 493089
+ 87449 string characters out of 6134842
  172028 words of memory out of 5000000
- 9424 multiletter control sequences out of 15000+600000
+ 9434 multiletter control sequences out of 15000+600000
  10898 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  29i,5n,28p,1936b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -508,10 +504,10 @@ l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texl
 ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Report.pdf (14 pages, 675854 bytes).
+Output written on Report.pdf (19 pages, 1241142 bytes).
 PDF statistics:
- 231 PDF objects out of 1000 (max. 8388607)
- 192 compressed objects within 2 object streams
- 44 named destinations out of 1000 (max. 500000)
- 202 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 265 PDF objects out of 1000 (max. 8388607)
+ 216 compressed objects within 3 object streams
+ 50 named destinations out of 1000 (max. 500000)
+ 228 words of extra memory for PDF output out of 10000 (max. 10000000)
 

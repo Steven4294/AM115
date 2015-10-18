@@ -114,6 +114,20 @@ Now, let us consider how varying the parameters or initial conditions affects th
 \begin{center}
 \includegraphics[width=300pt]{contour_ext1_part1}
 \end{center}
+
+In the next plot, we consider varying $D_1$ and $D_2$, which are the military effectiveness of $C_2$ and $C_1$ respectively (see Code Snippet 6). Let us consider the effect of varying these parameters with similar contour startegy as above. As you can see, small $D_1$ and high $D_2$ drive our populations of $M_1$ and $V_1$ to 0, and smaller $D_2$ can drive $V_1$ to 0 faster than $M_1$. As $D_1$ increases, $V_1$ increases, and as $D_2$ increases, $V_1$ decreases. For low $D_2$, as $D_1$ increases, $M_1$ generally decreases, and for high $D_2$, as $D_1$ increases, $M_1$ increases. As $D_2$ decreases, $M_1$ increases. Small $D_1$ and $D_2$ lead to high $M_1$ populations, when neither military is all that effective. Finally, higher $D_1$ leads to lower $M_2$ and higher $D_2$ leads to higher $M_2$. This is perhaps one of the more interesting interplay of parameters we will discuss in the Discussion section.
+
+\begin{center}
+\includegraphics[width=300pt]{contour_ext1_part2}
+\end{center}
+
+In the final plot, we observe the effects of varying initial conditions in an analagous fashion (see Code Snippet 7). Note that we will implicitly consider the parameter $a$ here, since $V_1(0) = \frac{1 - a}{a} M_1(0)$. We will consider initial conditions $M_1(0)$ versus $M_2(0)$. Here, as you can see, larger $M_1(0)$ increases $M_1$ and $V_1$ and decreases $M_2$. Similarly, larger $M_2(0)$ increases $M_2$ and decreases $M_1$ and $V_1$.
+
+\begin{center}
+\includegraphics[width=300pt]{contour_ext1_part3}
+\end{center}
+
+
 \subsection{Scenario 3}
 
 
@@ -123,16 +137,19 @@ Before delving into contextualizing the results and further commenting on the be
 \subsection{Scenario 1}
 We found that in order to win, we needed $M_2^2 < \frac{\alpha}{1 - \alpha} A^2$, and we need to start with some villagers. This will allow us to reach a stable fixed point in which $V_1 > 0$ which will induce the enemy AI to surrender with enough time. This means if $M_2(0)$ is high like 200, we would need $\alpha > 0.5$ to win. If we set $\alpha = 1$, which means instantaneous spawn rates/ resource gathering, then regardless of map size, we should be able to sustain a non-zero population in the long run and thus win, which makes sense. If we choose a small map size (corresponds to low $A$ because it would be easier to find and kill villagers with even a small army), then we can also start the AI with a small military to win, or simply set a very high reproduction rate, i.e initialize a high unit spawn rate and gather resources quickly. \par
 
-Thus, when initializing the game, we need to pick the right interplay of parameters between the military starting size of the AI, the map size, and the unit spawn rate, satisfying the above equation. Note that this will give us the best chance of winning, but not guarantee it, because if we are very slow at clicking villagers to resources in the actual gameplay, this will lower $\alpha$ and we may lose.
+Thus, when initializing the game, we need to pick the right interplay of parameters between the military starting size of the AI, the map size, and the unit spawn rate, satisfying the above equation. Note that this will give us the best chance of winning, but not guarantee it, because if we are very slow at clicking villagers to resources in the actual gameplay, this will lower $\alpha$ and we may lose.  
 
 \subsection{Scenario 2}
+In this scenario, we can win by either destroying the military of the enemy AI, or sustaining population in the long run - equilibrium B and C from our analysis are victories, and equilibrium A is a loss. The initial conditions are parameters that we can set at game initialization (the amount of military the enemy AI starts with and the amount we start with), and the results we saw here aren't too surprising, i.e. that larger initial enemy military units hurt us, while as we have more initial military units, we have a higher chance of winning. \par
+See scenario 1 discussion for thorough intuition on the parameters $A$ and $\alpha$. What we saw here was quite analagous - larger $A$ (think of it as map size) makes it hard for the enemy to find us, and larger $\alpha$ helps us maintain our populations (think of it as unit spawn rate). \par
+Finally, let us contextualize the effects we observed that $D_1$ and $D_2$ had on the equilibrium quantities. $D_1$ can be thought of as the effectiveness of the enemy military while $D_2$ is the effectiveness of our military. In the game, we can influence $D_1$ through setting a difficulty level - at higher levels, the enemy is better able to use its military to maximize the number of your units it can kill. $D_2$ can be thought of as controlled by how fast we click and kill enemy units in the game; it can also be thought of as our "skill level" in the game. As we saw in the analysis, lower $D_1$ and higher $D_2$ is necessary to maximize our chances of winning. We must click quickly and strategize well, and we can set a lower difficulty at the start of the game to have a better chance of victory. We also saw from our contours that our villager population is driven to zero more quickly than our military, which suggests that we should initialize the game with many times more villagers to ensure that we can sustain populations. We also saw that for high $D_2$, increasing $D_1$ can actually increase $M_1$, but this just means that when we are incredibly effective at stifling the enemy military, increasing enemy military effectiveness doesn't hurt us as their populations are decreasing quickly anyway. We saw the surprising result that small $D_1$ and $D_2$ lead to incredibly high $M_1$ populations, but this is just because neither military is all that effective, so military units thrive. 
 \subsection{Scenario 3}
 
 \section{Conclusion} 
 TODO: brief summary of motivation and discussion
 
 \section{Attribution of Efforts} 
-\paragraph{}
+We attempted to keep it as fluid as possible, and came up with the model and helped each other on code through ~5 hours of meeting together. Nevertheless, here is rough split-up of work. Theresa wrote baseline code for scenario 1, and wrote out the presentation pdf. Varun wrote the plots code for scenarios 2/3, and put together most of the Latex File, collating results and tweaking (except Scenario 3). Steven came up with code for the contour plots, and added parts of Scenario 3 to the Latex File. Tina came up with the code for phase plots, and performed final organization/edits of the Latex File/Presentation, specifically adding portions to Scenario 3.
 
 \section{References} 
 \begin{enumerate}
@@ -328,54 +345,198 @@ end
 
 \subsection{Snippet 5}
 \begin{verbatim}
-% Phase place plots of base case
+clear all;
 
-clf; clear all;
+A_array = linspace(1, 200, 10);
+alpha_array = linspace(0.01, 1, 10);
 
-% Parameters, which can be varied to produce introducing results. 
-alpha=0.5;
-a=0.2;
-K=200;
-A=190;
-B=200;
-D1=100;
-c=6;
-D2=200;
-
-% Since V_2 is 0, C_2=M_2. On the other hand, C_1=V_1+M_1.
-% The change in C_1 is thus the sum of the change in V_1 and M_1
-% We assume here that in our initial values, the proportion of M_1 out of
-% total C_1 is (a/alpha), the same proportion of new births that will be
-% dedicated to becoming soldiers. Similarly, the proportion of V_1 would be
-% 1-(a/alpha). This is to avoid making a 3-D or 4-D phase diagram with V_1,
-% V_2, M_1, and M_2. 
-i=0;
-for M_2=0:5:200
-  i=i+1;
-  j=0;
-  for C_1=0:5:200
-    j=j+1;
-    CC1(i,j)=C_1;
-    MM2(i,j)=M_2;
-    M_1=a*C_1; 
-    V_1=(1-a)*C_1;
-    dV_1(i,j)=((1-a)*alpha).*V_1.*(1-(V_1./((1-a)*K)))-V_1*c*D1*(M_2.^2./(A+M_2^2))*(1/(A+M_1));
-    dM_1(i,j)=(a*alpha).*V_1.*(1-(V_1./((1-a)*K)))-M_1.*D1.*(M_2^2./(A+M_2.^2))*(1./(A+M_1.^2));
-    dC_1=dV_1+dM_1;
-    dM_2(i,j)=-D2.*M_2.*(M_1.^2./(A+M_1.^2)).*(1./(A+M_2.^2));
-  end
+% Find M1, V1, M2 values for different A and alpha
+for j=1:length(A_array)
+    A = A_array(j);
+    for k = 1:length(alpha_array)
+        alpha = alpha_array(k);
+        
+	% see code snippet 4 for this function
+        [ t,P ] = solveExtension1(100,200,A, 200, 0.2, alpha, 25, 100, 20, 50);
+         
+        M1(j, k) = P(1,100);
+        V1(j, k) = P(2,100);
+        M2(j, k) = P(3,100);
+    end 
 end
 
+% in order to plot parameter dependencies
+[X Y] = meshgrid(alpha_array, A_array);
 
-% plot arrows in phase plane:
-quiver(CC1,MM2,dC_1,dM_2)
-h(1)=title('Civ 1 and Civ 2 populations');
-h(2)=xlabel('Civilization 1');
-h(3)=ylabel('Civilization 2');
-h(4)=gca;
-set(h,'FontSize',18)
-axis([0 200 0 200])
-hold on
+subplot(2,3,1)
+surf(X, Y, M1)
+xlabel('alpha')
+ylabel('A')
+zlabel('M_1')
+
+subplot(2,3,2)
+surf(X, Y, V1)
+xlabel('alpha')
+ylabel('A')
+zlabel('V_1')
+
+subplot(2,3,3)
+surf(X, Y, M2)
+xlabel('alpha')
+ylabel('A')
+zlabel('M_2')
+
+
+subplot(2,3,4)
+contour(X, Y, M1, 'ShowText','on')
+title('contour for M_1')
+xlabel('alpha')
+ylabel('A')
+
+subplot(2,3,5)
+contour(X, Y, V1, 'ShowText','on')
+title('contour for V_1')
+xlabel('alpha')
+ylabel('A')
+
+subplot(2,3,6)
+contour(X, Y, M2, 'ShowText','on')
+title('contour for M_2')
+xlabel('alpha')
+ylabel('A')
+
+\end{verbatim}
+
+\subsection{Snippet 6}
+\begin{verbatim}
+clear all;
+
+D1_array = linspace(1, 200, 40);
+D2_array = linspace(1, 200, 40);
+
+% Find M1, V1, M2 values for different A and alpha
+for j=1:length(D1_array)
+    D1 = D1_array(j);
+    for k = 1:length(D2_array)
+        D2 = D2_array(k);
+        
+        % see code snippet 4 for this function
+        [ t,P ] = solveExtension1(D1,D2,150, 200, 0.2, 0.5, 25, 100, 20, 50);
+       
+        M1(j, k) = P(1,100);
+        V1(j, k) = P(2,100);
+        M2(j, k) = P(3,100);
+    end 
+end
+
+% in order to plot parameter dependencies
+[X Y] = meshgrid(D1_array, D2_array);
+
+subplot(2,3,1)
+surf(X, Y, M1)
+xlabel('D1')
+ylabel('D2')
+zlabel('M_1')
+
+subplot(2,3,2)
+surf(X, Y, V1)
+xlabel('D1')
+ylabel('D2')
+zlabel('V_1')
+
+subplot(2,3,3)
+surf(X, Y, M2)
+xlabel('D1')
+ylabel('D2')
+zlabel('M_2')
+
+
+subplot(2,3,4)
+contour(X, Y, M1, 'ShowText','on')
+title('contour for M_1')
+xlabel('D1')
+ylabel('D2')
+
+subplot(2,3,5)
+contour(X, Y, V1, 'ShowText','on')
+title('contour for V_1')
+xlabel('D1')
+ylabel('D2')
+
+subplot(2,3,6)
+contour(X, Y, M2, 'ShowText','on')
+title('contour for M_2')
+xlabel('D1')
+ylabel('D2')
+
+\end{verbatim}
+
+\subsection{Snippet 7}
+\begin{verbatim}
+clear all;
+
+M10_array = linspace(10, 200, 10);
+M20_array = linspace(10, 200, 10);
+
+% Find M1, V1, M2 values for different A and alpha
+for j=1:length(M10_array)
+    M10 = M10_array(j);
+    for k = 1:length(M20_array)
+        M20 = M20_array(k);
+        
+        disp(M10);
+        disp(M20);
+        % see code snippet 4 for this function
+        [ t,P ] = solveExtension1(100,200,150, 200, 0.2, 0.5, M10, 4*M10, M20, 40);
+      
+        disp(P(1,100));
+        
+        M1(j, k) = P(1,100);
+        V1(j, k) = P(2,100);
+        M2(j, k) = P(3,100);
+    end 
+end
+
+% in order to plot parameter dependencies
+[X Y] = meshgrid(M10_array, M20_array);
+
+subplot(2,3,1)
+surf(X, Y, M1)
+xlabel('M20')
+ylabel('M10')
+zlabel('M_1')
+
+subplot(2,3,2)
+surf(X, Y, V1)
+xlabel('M20')
+ylabel('M10')
+zlabel('V_1')
+
+subplot(2,3,3)
+surf(X, Y, M2)
+xlabel('M20')
+ylabel('M10')
+zlabel('M_2')
+
+
+subplot(2,3,4)
+contour(X, Y, M1, 'ShowText','on')
+title('contour for M_1')
+xlabel('M20')
+ylabel('M10')
+
+subplot(2,3,5)
+contour(X, Y, V1, 'ShowText','on')
+title('contour for V_1')
+xlabel('M20')
+ylabel('M10')
+
+subplot(2,3,6)
+contour(X, Y, M2, 'ShowText','on')
+title('contour for M_2')
+xlabel('M20')
+ylabel('M10')
+
 \end{verbatim}
 
 
