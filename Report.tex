@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage{hyperref}
+\usepackage{enumerate}
 \usepackage{latexsym}
 \usepackage{amssymb,amsmath}
 \usepackage[pdftex]{graphicx}
@@ -97,21 +98,21 @@ Note that under specific settings of parameters as discussed above, it is possib
 
 \subsection{Scenario 2}
 Here, because we have a system of ODEs, algebraic analysis is more difficult, but we can still perform some algebraic reasoning about the fixed points of the system. The equation for $\dot M_2$ implies that in the fixed point equilibrium $M_2 = 0$ or $M_1 = 0$ (or both are 0). If $M_1=0$, then $V_1=0$ or $V_1=(1-a)k$; if $V_1 = 0$, then $M_2$ can be anything (including 0) and if $V_1 = (1-a)k$, then $M_2$ must be 0. If $M_2 = 0$, then $V_1=0$ or $V_1=(1-a)k$; if $V_1 = 0$, then $M_1$ can be anything (including 0) and if $V_1 = (1-a)k$, then $M_1 = ak$. Because the only way to get $M_i = 0$ and $V_1 = (1-a)k$ is by setting $V_1(0) = (1-a)k$, we won't talk more about that fixed point. There are 3 remaining stable equilibrium scenarios from above:
-\begin{itemize}
+\begin{enumerate}[(A)]
 \item $V_1 = 0$, $M_1 = 0$, and $M_2 \geq 0$.
 \item $V_1 =0$, $M_1 \geq 0$, and $M_2 = 0$.
 \item $V_1 = (1-a)k$, $M_1 = ak$, and $M_2 = 0$.
-\end{itemize}
+\end{enumerate}
 
-By changing the parameters $\alpha$, $A$, $a$, $D_1$, and $D_2$, we might vary the fixed point we reach. We can also do so with different initial conditions. Here are plots (from Code Snippet 4) that show the three different equilibrium scenarios:
+By changing the parameters $\alpha$, $A$, $a$, $D_1$, and $D_2$, we might vary the fixed point we reach. We can also do so with different initial conditions. Here are plots (from Code Snippet 4) that show the three different equilibrium scenarios - top left represents B, top right represents C, and bottom left represents A. Please see the code for the different parameter/ initial conditions settings that led to these varying equilibria:
 \begin{center}
 \includegraphics[width=200pt]{graph_ext1}
 \end{center}
 
-Now, let us consider a phase diagaram that shows how the solution might vary with different initial conditions. In the phase diagaram, we let $C_1 = M_1 + V_1$ and of course, $C_2 = M_2$ and plot only $C_1$ vs $C_2$.
+Now, let us consider how varying the parameters or initial conditions affects the equilibrium $M_1, V_1, and M_2$ solution - that is we will solve the ode numerically up to $t=40$ and read the value. We can consider two params at a time. In the first plot, let us consider $A$ and $\alpha$ as before (see Code Snippet 5). As you can see in the plot, holding other parameters constant, larger $A$ and $\alpha$ increase $M_1$ and $V_1$ repsectively for this solution. The behavior in the $M_2$ contour is just a byproduct of our ODE solver's imprecision.
 
 \begin{center}
-\includegraphics[width=200pt]{phase_ext1}
+\includegraphics[width=300pt]{contour_ext1_part1}
 \end{center}
 \subsection{Scenario 3}
 
