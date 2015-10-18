@@ -56,22 +56,22 @@ Let us explain our reasoning for the equation for $\dot V_1$. The first term rep
 In our second scenario, we initialize the game again so that the AI civilization $C_2$ starts off with only military. However, we, $C_1$, choose now to produce both military and villagers. It is now possible for us to win by either stabilizing our long-run population to be nonzero or wiping out the AI population to $T$. Without loss of generality, let $T = 0$. \par
 
 
-$$\dot M_1=a \alpha V_1(1-\frac{V_1}{K-V_1})-[M_1D_1(\frac{M_2^2}{A+M_2^2})(\frac{M_1}{A+M_1^3})]$$
-$$\dot V_1=(1 - a) \alpha V_1(1-\frac{V_1}{K-M_1})-[V_1cD_1(\frac{M_2^2}{A+M_2^2})(\frac{M_1}{A +M_1^2})]$$
-$$\dot M_2=-M_2 D_2(\frac{M_1^2}{A+M_1^2})(\frac{M_2}{A +M_2^3}) $$
+$$\dot M_1=a \alpha V_1(1-\frac{V_1}{(1-a)K})-[M_1D_1(\frac{M_2^2}{A+M_2^2})(\frac{1}{A+M_1^2})]$$
+$$\dot V_1=(1 - a) \alpha V_1(1-\frac{V_1}{(1-a)K})-[V_1cD_1(\frac{M_2^2}{A+M_2^2})(\frac{1}{A +M_1})]$$
+$$\dot M_2=-M_2 D_2(\frac{M_1^2}{A+M_1^2})(\frac{1}{A +M_2^2}) $$
 $$\dot V_2 = 0 $$
 
-Let us explain our reasoning for this set of ODEs. For civilization 1, the first terms in $\dot M_1$ and $\dot V_1$ represent logistic growth. Here the reproduction rate of military and of villagers are $a \alpha$ and $(1 - a) \alpha$ respectively where the $a$ now represents the fraction that we devote to military. The carrying capacities of military and villagers are $K-V_1$ and $K-M_1$ respectively. For civilization 1, the second term represents the predation term, which depends on both $M_1$ and $M_2$. It was derived by holding the other variable constant, considering how predation is affected by the variable in question, and then choosing the best functional form to represent this. The $M_1 (\frac{M_2^2}{A+M_2^2})$ and $V_1 (\frac{M_2^2}{A+M_2^2})$ terms represent how $M_2$ affects predation on $M_1$ and $V_1$ respectively, where the multiplication by $M_1$ and $V_1$ represent maximum kill limits. The $A$ again is controlled by map size, and represents the point at which predation becomes easier because you have enough $M_2$ to find enemy units. The $M_1 D_1 (\frac{M_1}{A+M_1^3})$ and the $D_1 (\frac{M_1}{A +M_1^2})$ represent the relationship between $M_1$ and predation. When $M_1$ is small, predation will rise, but when $M_1$ gets large enough (controlled by $A$), predation will fall. The $D_1$ is a parameter that controlls how effectively $C_2$ can kill $C_1$ military units, where larger values indicate they are more effective. $c = 6$ because military units have 6x the life points of villager units, and thus villagers are 6x easier to kill. For civlization 2, there is no growth because $V_2 = 0$ for all $t$. There is only a predation term on $M_2$ that is symmetricly formed; the parameter $D_2$ controlls how effectively we, $C_1$, can vanquish $M_2$. This is determined largely by our clicking speed in the game. \par
+Let us explain our reasoning for this set of ODEs. For civilization 1, the first terms in $\dot M_1$ and $\dot V_1$ represent logistic growth. There is dependence only on $V_1$, since only villagers reproduce. Here the reproduction rate of military and of villagers are $a \alpha$ and $(1 - a) \alpha$ respectively where the $a$ now represents the fraction that we devote to military. The carrying capacity is $(1-a)K$ for villagers, which is what we care about in the equation. For civilization 1, the second term represents the predation term, which depends on both $M_1$ and $M_2$. It was derived by holding the other variable constant, considering how predation is affected by the variable in question, and then choosing the best functional form to represent this. The $M_1 (\frac{M_2^2}{A+M_2^2})$ and $V_1 (\frac{M_2^2}{A+M_2^2})$ terms represent how $M_2$ affects predation on $M_1$ and $V_1$ respectively, where the multiplication by $M_1$ and $V_1$ represent maximum kill limits. The $A$ again is controlled by map size, and represents the point at which predation becomes easier because you have enough $M_2$ to find enemy units. The $M_1 D_1 (\frac{1}{A+M_1^2})$ and the $D_1 (\frac{1}{A +M_1})$ represent the relationship between $M_1$ and predation. When $M_1$ is small, predation will rise, but when $M_1$ gets large enough (controlled by $A$), predation will fall. The $D_1$ is a parameter that controlls how effectively $C_2$ can kill $C_1$ military units, where larger values indicate they are more effective. $c = 6$ because military units have 6x the life points of villager units, and thus villagers are 6x easier to kill. For civlization 2, there is no growth because $V_2 = 0$ for all $t$. There is only a predation term on $M_2$ that is symmetricly formed; the parameter $D_2$ controlls how effectively we, $C_1$, can vanquish $M_2$. This is determined largely by our clicking speed in the game. \par
 The number of parameters we can control in this system is 5 - we can control $A$ with map size, $D_1$ is controlled by AI speed and intelligence (which can be set at game initialization), $D_2$ is controlled by our clicking speed in the game, $a$ is the strategy of villager/military allocation we employ in the game, and $\alpha$ is reproduction rate overall which is controlled mostly by spawn rates we set at game initialization.
 
 \subsection{Scenario 3}
 
  In our final scenario, $C_1$ produces both villagers and military units as before. However, we initialize $C_2$ to start with some villagers as well, and they produce both villagers and military units. Now, we write out equations for $C_2$ that are symmetric to the equations for $C_1$, following the same logic for our model as scenario 2: 
 
-$$\dot M_1 =a_1 \alpha V_1(1-\frac{V_1}{K-V_1})-[M_1D_1(\frac{M_2^2}{A+M_2^2})(\frac{M_1}{A+M_1^3})]$$
-$$\dot V_1=(1 - a_1) \alpha V_1(1-\frac{V_1}{K-M_1})-[V_1c D_1(\frac{M_2^2}{A+M_2^2})(\frac{M_1}{A +M_1^2})]$$
-$$\dot M_2=a_2 \beta V_2(1-\frac{V_2}{K-V_2})-[M_2 D_2(\frac{M_1^2}{A+M_1^2})(\frac{M_2}{A +M_2^3})] $$
-$$\dot V_2=(1 - a_2) \beta V_2(1-\frac{V_2}{K-M_2})-[V_2 c D_2(\frac{M_1^2}{A+M_1^2})(\frac{M_2}{A +M_2^2})] $$
+$$\dot M_1 =a_1 \alpha V_1(1-\frac{V_1}{(1 - a_1) K})-[M_1D_1(\frac{M_2^2}{A+M_2^2})(\frac{1}{A+M_1^2})]$$
+$$\dot V_1=(1 - a_1) \alpha V_1(1-\frac{V_1}{(1 - a_1)K})-[V_1c D_1(\frac{M_2^2}{A+M_2^2})(\frac{1}{A +M_1})]$$
+$$\dot M_2=a_2 \beta V_2(1-\frac{V_2}{(1 - a_2)K})-[M_2 D_2(\frac{M_1^2}{A+M_1^2})(\frac{1}{A +M_2^2})] $$
+$$\dot V_2=(1 - a_2) \beta V_2(1-\frac{V_2}{(1-a_2)K})-[V_2 c D_2(\frac{M_1^2}{A+M_1^2})(\frac{1}{A +M_2})] $$
 
 Here we have 6 parameters. The additional paramter is $\beta$ which is determined only by spawn rate of units. If we are as fast as the AI at clicking villagers to gather resources, then $\alpha = \beta$. Note that $a_2$ isn't really a parameter, since the military/villager allocation is set in the game code. Proportional allocation as we have here is a bit of a simplification of the allocation schedule, but we will let $a_2 = 0.5$.
 
@@ -96,7 +96,7 @@ Note that under specific settings of parameters as discussed above, it is possib
 \end{center}
 
 \subsection{Scenario 2}
-Here, because we have a system of ODEs, algebraic analysis is more difficult, but we can still perform some algebraic reasoning about the fixed points of the system.
+Here, because we have a system of ODEs, algebraic analysis is more difficult, but we can still perform some algebraic reasoning about the fixed points of the system. The equation for $\dot M_2$ implies that in the fixed point equilibrium $M_2 = 0$ or $M_1 = 0$ or both are 0. If only $M_1$
 \subsection{Scenario 3}
 
 
@@ -229,5 +229,33 @@ end
 \end{verbatim}
 
 \subsection{Snippet 3}
+\begin{verbatim}
+function ode45_basic
+clear all; close all;
+M2=100;
+V0=200;
+K=200;
+A=100;
+B=100;
+alpha=0.5;
+
+[t,V1]=ode45(@(t,V1) f(t,V1,K,alpha,A,B, M2),[0 200],V0);
+hold on;
+
+subplot(1, 2, 1)
+plot(t,V1)
+xlabel('t');ylabel('Village Civilisation1')
+
+alpha = 0.6;
+[t,V1_new]=ode45(@(t,V1) f(t,V1,K,alpha,A,B, M2),[0 200],V0);
+
+subplot(1, 2, 2)
+plot(t,V1_new)
+xlabel('t');ylabel('Village Civilisation1')
+
+
+function ydot=f(t,V1,K,alpha,A,B, M2)
+ydot=alpha*V1*(1-V1/K)-V1*M2^2/(A^2+M2^2);
+\end{verbatim}
 
 \end{document}
