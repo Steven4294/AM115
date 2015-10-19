@@ -1,0 +1,77 @@
+clear all;close all;
+a1_array = linspace(0, 1, 10);
+a2_array = linspace(0, 1, 10);
+A_array = linspace(100, 200, 10);
+
+V10 = 10;
+M10 = 10;
+M20 = 10;
+V20 = 10;
+
+k = 800;
+D1 = 100;
+D2 = 100;
+A =  100;
+tmax = 40;
+alpha = .2;
+beta = .2;
+
+% Find M1, V1, M2 values for different alpha1 and alpha2
+for j=1:length(a1_array)
+    a1 = a1_array(j);
+    for k = 1:length(a2_array)
+        a2 = a2_array(k);
+        A = A_array(k);
+        
+        % see code snippet 4 for this function
+        %[ t,P ]  = solveExtension2(D1,D2, A, k, a1, a2, alpha, beta, M10, V10, M20, V20, tmax);
+        [ t,P ]  = solveExtension2(D1,D2, A, k, a1, .5, alpha, beta, M10, V10, M20, V20, tmax);
+
+        M1(j, k) = P(1,0);
+        V1(j, k) = P(2,end);
+        M2(j, k) = P(3,end);
+        V2(j, k) = P(4,end);
+    end
+end
+% in order to plot parameter dependencies
+[X Y] = meshgrid(a1_array, a2_array);
+subplot(2,4,1)
+surf(X, Y, M1)
+xlabel('alpha_1')
+ylabel('alpha_2')
+zlabel('M_1')
+subplot(2,4,2)
+surf(X, Y, V1)
+xlabel('alpha_1')
+ylabel('alpha_2')
+zlabel('V_1')
+subplot(2,4,3)
+surf(X, Y, M2)
+xlabel('alpha_1')
+ylabel('alpha_2')
+zlabel('M_2')
+subplot(2,4,4)
+surf(X, Y, V2)
+xlabel('alpha_1')
+ylabel('alpha_2')
+zlabel('V_2')
+subplot(2,4,5)
+contour(X, Y, M1, 'ShowText','on')
+title('contour for M_1')
+xlabel('alpha_1')
+ylabel('alpha_2')
+subplot(2,4,6)
+contour(X, Y, V1, 'ShowText','on')
+title('contour for V_1')
+xlabel('alpha_1')
+ylabel('alpha_2')
+subplot(2,4,7)
+contour(X, Y, M2, 'ShowText','on')
+title('contour for M_2')
+xlabel('alpha_1')
+ylabel('alpha_2')
+subplot(2,4,8)
+contour(X, Y, V2, 'ShowText','on')
+title('contour for V_2')
+xlabel('alpha_1')
+ylabel('alpha_2')
