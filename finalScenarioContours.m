@@ -1,8 +1,9 @@
 clear all;close all;
 n = 10;
 alpha_array = linspace(0, 1, n);
+beta_array = linspace(0, 1, n);
 a2 = .5;
-A_array = linspace(50, 150, n);
+A_array = linspace(0, 1, n);
 
 V10 = 50;
 M10 = 50;
@@ -20,7 +21,9 @@ a1 = .1;
 for j=1:length(alpha_array)
     alpha = alpha_array(j);
     for k = 1:length(A_array)
-        A = A_array(k);
+        %A = A_array(k);
+        A = 150;
+        beta = beta_array(k);
         
         % see code snippet 4 for this function
         %[ t,P ]  = solveExtension2(D1,D2, A, k, a1, a2, alpha, beta, M10, V10, M20, V20, tmax);
@@ -37,40 +40,40 @@ end
 subplot(2,4,1)
 surf(X, Y, M1)
 xlabel('alpha')
-ylabel('A')
+ylabel('beta')
 zlabel('M_1')
 subplot(2,4,2)
 surf(X, Y, V1)
 xlabel('alpha')
-ylabel('A')
+ylabel('beta')
 zlabel('V_1')
 subplot(2,4,3)
 surf(X, Y, M2)
 xlabel('alpha')
-ylabel('A')
+ylabel('beta')
 zlabel('M_2')
 subplot(2,4,4)
 surf(X, Y, V2)
 xlabel('alpha')
-ylabel('A')
+ylabel('beta')
 zlabel('V_2')
 subplot(2,4,5)
 contour(X, Y, M1, 'ShowText','on')
 title('contour for M_1')
 xlabel('alpha')
-ylabel('A')
+ylabel('beta')
 subplot(2,4,6)
 contour(X, Y, V1, 'ShowText','on')
 title('contour for V_1')
 xlabel('alpha')
-ylabel('A')
+ylabel('beta')
 subplot(2,4,7)
 contour(X, Y, M2, 'ShowText','on')
 title('contour for M_2')
 xlabel('alpha')
-ylabel('A')
+ylabel('beta')
 subplot(2,4,8)
 contour(X, Y, V2, 'ShowText','on')
 title('contour for V_2')
-xlabel('alpha_1')
-ylabel('alpha_2')
+xlabel('alpha')
+ylabel('beta')
